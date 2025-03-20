@@ -15,7 +15,7 @@ function Login() {
   const loginSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/user/login", { ...user }); // sends to backend server to check for crrdentials
+      await axios.post("/user/login", { ...user }); // sends to backend server to check for credentials
 
       localStorage.setItem("firstLogin", true);
       window.location.href = "/";
