@@ -12,7 +12,11 @@ export const DataProvider = ({ children }) => {
 
   const refreshToken = async () => {
     try {
-      const res = await axios.post(`${API_URL}/user/refresh_token`);
+      const res = await axios.post(
+        `${API_URL}/user/refresh_token`,
+        {}, // empty body if none is needed
+        { withCredentials: true }
+      );
       console.log("Token Response:", res.data); // ✅ Log API response
       setToken(res.data.accessToken);
     } catch (error) {
