@@ -23,7 +23,10 @@ function Login() {
       window.location.href = "/";
       console.log(user);
     } catch (err) {
-      alert(err.response.data.msg);
+      const errorMsg =
+        err.response?.data?.msg || "An error occurred during login";
+      alert(errorMsg);
+      console.error(err);
     }
   };
   return (
