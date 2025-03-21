@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
+
 function Register() {
   const [user, setUser] = useState({
     name: "",
@@ -16,7 +18,7 @@ function Register() {
   const registerSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/user/register", { ...user });
+      await axios.post(`${API_URL}/user/register`, { ...user });
 
       localStorage.setItem("firstLogin", true);
       window.location.href = "/";
@@ -28,7 +30,7 @@ function Register() {
   return (
     <div className="register-page">
       <form onSubmit={registerSubmit}>
-      <input
+        <input
           type="text"
           name="name"
           required

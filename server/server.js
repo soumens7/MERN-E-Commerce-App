@@ -6,6 +6,16 @@ const fileUpload = require("express-fileupload");
 const app = express();
 const PORT = process.env.PORT || 4000;
 
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://mern-e-commerce-app-tau.vercel.app/",
+    ],
+    credentials: true,
+  })
+);
+
 // Middleware
 app.use(express.json());
 app.use(cookieParser());

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
+
 function Login() {
   const [user, setUser] = useState({
     email: "",
@@ -15,7 +17,7 @@ function Login() {
   const loginSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/user/login", { ...user }); // sends to backend server to check for credentials
+      await axios.post(`${API_URL}/user/login`, { ...user }); // sends to backend server to check for credentials
 
       localStorage.setItem("firstLogin", true);
       window.location.href = "/";
