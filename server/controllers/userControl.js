@@ -41,7 +41,7 @@ const userControl = {
 
       // Store refresh token in HTTP-only cookie for security
       res.cookie("refreshtoken", refreshToken, {
-        httpOnly: true,
+        httpsOnly: true,
         path: "/user/refresh_token",
       });
 
