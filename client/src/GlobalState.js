@@ -5,12 +5,14 @@ import UserAPI from "./API/UserAPI";
 
 export const GlobalState = createContext();
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
+
 export const DataProvider = ({ children }) => {
   const [token, setToken] = useState(false);
 
   const refreshToken = async () => {
     try {
-      const res = await axios.post("/user/refresh_token");
+      const res = await axios.post(`${API_URL}/user/refresh_token`);
       console.log("Token Response:", res.data); // ✅ Log API response
       setToken(res.data.accessToken);
     } catch (error) {
