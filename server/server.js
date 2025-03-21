@@ -10,10 +10,13 @@ const PORT = process.env.PORT || 4000;
 app.use(
   cors({
     origin: [
-      "http://localhost:3000",
-      "https://mern-e-commerce-app-tau.vercel.app/",
+      "https://mern-e-commerce-app-tau.vercel.app",
+      "http://localhost:4000",
     ],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
     credentials: true,
+    optionsSuccessStatus: 200,
   })
 );
 
