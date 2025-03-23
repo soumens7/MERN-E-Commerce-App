@@ -7,6 +7,15 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 4000;
 
+// Middleware to set Permissions-Policy header
+app.use((req, res, next) => {
+  res.setHeader(
+    "Permissions-Policy",
+    "geolocation=(), microphone=(), camera=()"
+  );
+  next();
+});
+
 app.use(
   cors({
     origin: [
