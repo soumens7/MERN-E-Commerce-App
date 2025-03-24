@@ -42,9 +42,10 @@ const userControl = {
       // Store refresh token in HTTP-only cookie for security
       res.cookie("refreshtoken", refreshToken, {
         httpOnly: true,
+        secure: true, // Required for HTTPS
+        sameSite: "None", // Required for cross-origin with HTTPS
         path: "/user/refresh_token",
-        secure: process.env.NODE_ENV === "production", // 🔒 Only on HTTPS in production
-        sameSite: "Lax", // or "None" if cross-site
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       });
 
       // Send access token in response
@@ -103,9 +104,10 @@ const userControl = {
       // Store refresh token in HTTP-only cookie
       res.cookie("refreshtoken", refreshToken, {
         httpOnly: true,
+        secure: true, // Required for HTTPS
+        sameSite: "None", // Required for cross-origin with HTTPS
         path: "/user/refresh_token",
-        secure: process.env.NODE_ENV === "production", // 🔒 Only on HTTPS in production
-        sameSite: "Lax", // or "None" if cross-site
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       });
 
       // Send access token in response
