@@ -41,8 +41,10 @@ const userControl = {
 
       // Store refresh token in HTTP-only cookie for security
       res.cookie("refreshtoken", refreshToken, {
-        httpsOnly: true,
+        httpOnly: true,
         path: "/user/refresh_token",
+        secure: process.env.NODE_ENV === "production", // 🔒 Only on HTTPS in production
+        sameSite: "Lax", // or "None" if cross-site
       });
 
       // Send access token in response
@@ -60,12 +62,14 @@ const userControl = {
 
       // Check if refresh token exists
       if (!rf_token)
-        return res.status(400).json({ msg: "Please login or register" });
+        return res.status(401).json({ msg: "Please login or register" });
 
       // Verify the refresh token
       jwt.verify(rf_token, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
         if (err)
-          return res.status(400).json({ msg: "Please login or register" });
+          return res
+            .status(401)
+            .json({ msg: "Invalid token, please login again." });
 
         // Generate new access token
         const accessToken = createAccessToken({ id: user.id });
@@ -100,6 +104,8 @@ const userControl = {
       res.cookie("refreshtoken", refreshToken, {
         httpOnly: true,
         path: "/user/refresh_token",
+        secure: process.env.NODE_ENV === "production", // 🔒 Only on HTTPS in production
+        sameSite: "Lax", // or "None" if cross-site
       });
 
       // Send access token in response

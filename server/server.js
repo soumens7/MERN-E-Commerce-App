@@ -22,7 +22,7 @@ app.use(
   cors({
     origin: [
       "https://mern-e-commerce-app-tau.vercel.app",
-      "http://localhost:4000",
+      "http://localhost:3000",
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
