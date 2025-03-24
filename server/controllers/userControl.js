@@ -60,7 +60,7 @@ const userControl = {
     try {
       // Retrieve refresh token from cookies
       const rf_token = req.cookies.refreshtoken;
-
+      console.log("Cookies received:", req.cookies);
       // Check if refresh token exists
       if (!rf_token)
         return res.status(401).json({ msg: "Please login or register" });
