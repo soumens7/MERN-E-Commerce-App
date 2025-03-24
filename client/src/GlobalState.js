@@ -14,38 +14,37 @@ export const DataProvider = ({ children }) => {
     try {
       const res = await axios.post(
         `${API_URL}/user/refresh_token`,
-        {}, 
-        { 
+        {},
+        {
           withCredentials: true,
           headers: {
-            'Content-Type': 'application/json'
-          }
+            "Content-Type": "application/json",
+          },
         }
       );
-      
+
       if (res.data.accessToken) {
         setToken(res.data.accessToken);
       } else {
         // Clear invalid login state if no token returned
-        localStorage.removeItem('firstLogin');
+        localStorage.removeItem("firstLogin");
         setToken(false);
       }
     } catch (error) {
       console.error("Error refreshing token:", error.response?.data || error);
       // Clear invalid login state on error
-      localStorage.removeItem('firstLogin');
+      localStorage.removeItem("firstLogin");
       setToken(false);
     }
   };
 
   useEffect(() => {
     const firstLogin = localStorage.getItem("firstLogin");
-    
-    // Only attempt refresh if we have a firstLogin marker AND no existing token
-    if (firstLogin && !token) {
-      refreshToken();
+    if (firstLogin) {
+      if (!token) refreshToken();
     }
-  }, [token]); // Add token as dependency
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // ✅ Remove token from dependency to prevent infinite loop
 
   const state = {
     token: [token, setToken],
