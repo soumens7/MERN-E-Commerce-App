@@ -14,29 +14,43 @@ export const DataProvider = ({ children }) => {
     try {
       const res = await axios.post(
         `${API_URL}/user/refresh_token`,
-        {}, // empty body if none is needed
-        { withCredentials: true }
+        {}, 
+        { 
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
       );
-      console.log("Token Response:", res.data); // ✅ Log API response
-      setToken(res.data.accessToken);
+      
+      if (res.data.accessToken) {
+        setToken(res.data.accessToken);
+      } else {
+        // Clear invalid login state if no token returned
+        localStorage.removeItem('firstLogin');
+        setToken(false);
+      }
     } catch (error) {
       console.error("Error refreshing token:", error.response?.data || error);
-      setToken(false); // Ensure app doesn't break on failure
+      // Clear invalid login state on error
+      localStorage.removeItem('firstLogin');
+      setToken(false);
     }
   };
 
   useEffect(() => {
     const firstLogin = localStorage.getItem("firstLogin");
-    console.log("First Login Check:", firstLogin); // ✅ Debugging log
-    if (firstLogin) {
+    
+    // Only attempt refresh if we have a firstLogin marker AND no existing token
+    if (firstLogin && !token) {
       refreshToken();
     }
-  }, []); // ✅ No unnecessary dependencies
+  }, [token]); // Add token as dependency
 
   const state = {
     token: [token, setToken],
-    productsAPI: ProductAPI(token), // ✅ Calls API inside the provider
-    userAPI: UserAPI(token), // ✅ Calls API inside the provider
+    productsAPI: ProductAPI(token),
+    userAPI: UserAPI(token),
   };
 
   return <GlobalState.Provider value={state}>{children}</GlobalState.Provider>;
