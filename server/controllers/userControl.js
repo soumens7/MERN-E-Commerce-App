@@ -38,13 +38,14 @@ const userControl = {
       // Create JWT access and refresh tokens
       const accessToken = createAccessToken({ id: newUser._id });
       const refreshToken = createRefreshToken({ id: newUser._id });
-
+      console.log("Setting cookie with refreshToken:", refreshToken);
       // Store refresh token in HTTP-only cookie for security
       res.cookie("refreshtoken", refreshToken, {
         httpOnly: true,
         secure: true, // Required for HTTPS
         sameSite: "None", // Required for cross-origin with HTTPS
-        path: "/user/refresh_token",
+        domain: "https://mern-e-commerce-app-df8a.onrender.com",
+        path: "/",
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       });
 
@@ -101,12 +102,14 @@ const userControl = {
       const accessToken = createAccessToken({ id: user._id });
       const refreshToken = createRefreshToken({ id: user._id });
 
+      console.log("Setting cookie with refreshToken:", refreshToken);
       // Store refresh token in HTTP-only cookie
       res.cookie("refreshtoken", refreshToken, {
         httpOnly: true,
         secure: true, // Required for HTTPS
         sameSite: "None", // Required for cross-origin with HTTPS
-        path: "/user/refresh_token",
+        domain: "https://mern-e-commerce-app-df8a.onrender.com",
+        path: "/",
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       });
 

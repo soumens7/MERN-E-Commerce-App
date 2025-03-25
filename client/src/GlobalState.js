@@ -12,7 +12,7 @@ export const DataProvider = ({ children }) => {
 
   const refreshToken = async () => {
     try {
-      const res = await axios.post(
+      const res = await axios.post(// sends to backend server to check for credentials
         `${API_URL}/user/refresh_token`,
         {},
         {
@@ -31,7 +31,7 @@ export const DataProvider = ({ children }) => {
         setToken(false);
       }
     } catch (error) {
-      console.error("Error refreshing token:", error.response?.data || error);
+      console.error("Error refreshing token:", error.response?.data || error);// sends to backend server to check for credentials
       // Clear invalid login state on error
       localStorage.removeItem("firstLogin");
       setToken(false);
@@ -41,9 +41,8 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     const firstLogin = localStorage.getItem("firstLogin");
     if (firstLogin) {
-      if (!token) refreshToken();
+      if (!token) refreshToken();// sends to backend server to check for credentials
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // ✅ Remove token from dependency to prevent infinite loop
 
   const state = {
