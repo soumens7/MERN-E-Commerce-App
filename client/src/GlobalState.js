@@ -12,7 +12,7 @@ export const DataProvider = ({ children }) => {
 
   const refreshToken = async () => {
     try {
-      const res = await axios.get(
+      const res = await axios.post(
         // sends to backend server to check for credentials
         `${API_URL}/user/refresh_token`,
         {},
