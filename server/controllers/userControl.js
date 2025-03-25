@@ -43,7 +43,8 @@ const userControl = {
       res.cookie("refreshtoken", refreshToken, {
         httpOnly: true,
         secure: true, // Required for HTTPS
-        sameSite: "None", // Required for cross-origin with HTTPS
+        sameSite: "None", // Required for cross-origin with HTTPS,
+        domain: "mern-e-commerce-app-df8a.onrender.com",
         path: "/",
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       });
@@ -106,7 +107,8 @@ const userControl = {
       res.cookie("refreshtoken", refreshToken, {
         httpOnly: true,
         secure: true, // Required for HTTPS
-        sameSite: "None", // Required for cross-origin with HTTPS
+        sameSite: "None", // Required for cross-origin with HTTPS,
+        domain: "https://mern-e-commerce-app-df8a.onrender.com",
         path: "/",
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       });
