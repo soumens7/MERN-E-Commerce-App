@@ -24,7 +24,7 @@ app.use((req, res, next) => {
     "Permissions-Policy",
     "geolocation=(), microphone=(), camera=()"
   );
-  console.log("Permissions-Policy Header Set:", res.get("Permissions-Policy")); // Log the header
+  //console.log("Permissions-Policy Header Set:", res.get("Permissions-Policy")); // Log the header
   next();
 });
 
