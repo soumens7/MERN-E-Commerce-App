@@ -3,40 +3,45 @@ import ProductAPI from "./API/ProductAPI";
 import axios from "axios";
 import UserAPI from "./API/UserAPI";
 
+axios.defaults.withCredentials = true;
+axios.defaults.baseURL =
+  process.env.REACT_APP_API_URL || "http://localhost:4000";
+
 export const GlobalState = createContext();
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
+//const API_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
 
 export const DataProvider = ({ children }) => {
   const [token, setToken] = useState(false);
 
   const refreshToken = async () => {
     try {
-      // Verify cookie exists before making request
-      const cookies = document.cookie;
-      console.log("Current cookies:", cookies);
+      console.log("Attempting to refresh token...");
+
       const res = await axios.post(
-        // sends to backend server to check for credentials
-        `${API_URL}/user/refresh_token`,
+        "/user/refresh_token",
         {},
         {
-          withCredentials: true,
           headers: {
             "Content-Type": "application/json",
           },
+          // withCredentials is now set by defaults
         }
       );
+
       console.log("Refresh token response:", res.data);
       if (res.data.accessToken) {
         setToken(res.data.accessToken);
       } else {
-        // Clear invalid login state if no token returned
         localStorage.removeItem("firstLogin");
         setToken(false);
       }
     } catch (error) {
-      console.error("Error refreshing token:", error.response?.data || error);
-      // Clear invalid login state on error
+      console.error("Refresh token error:", {
+        message: error.message,
+        response: error.response?.data,
+        config: error.config,
+      });
       localStorage.removeItem("firstLogin");
       setToken(false);
     }
