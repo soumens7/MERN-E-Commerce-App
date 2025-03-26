@@ -14,12 +14,8 @@ app.use(
   cors({
     origin: CLIENT_URL,
     credentials: true,
-    exposedHeaders: ["set-cookie"],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
   })
 );
-
 
 // Middleware to set Permissions-Policy header (at the top)
 app.use((req, res, next) => {
