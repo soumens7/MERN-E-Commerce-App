@@ -19,8 +19,8 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
   })
 );
-// Handle preflight requests
-app.options("*", cors());
+
+
 // Middleware to set Permissions-Policy header (at the top)
 app.use((req, res, next) => {
   res.setHeader(
