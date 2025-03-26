@@ -3,10 +3,6 @@ import ProductAPI from "./API/ProductAPI";
 import axios from "axios";
 import UserAPI from "./API/UserAPI";
 
-axios.defaults.withCredentials = true;
-axios.defaults.baseURL =
-  process.env.REACT_APP_API_URL || "http://localhost:4000";
-
 export const GlobalState = createContext();
 
 //const API_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
