@@ -15,6 +15,7 @@ app.use(
     origin: CLIENT_URL,
     credentials: true,
     methods: ["POST", "GET", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
   })
 );
 
