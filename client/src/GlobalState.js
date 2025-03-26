@@ -12,6 +12,9 @@ export const DataProvider = ({ children }) => {
 
   const refreshToken = async () => {
     try {
+      // Verify cookie exists before making request
+      const cookies = document.cookie;
+      console.log("Current cookies:", cookies);
       const res = await axios.post(
         // sends to backend server to check for credentials
         `${API_URL}/user/refresh_token`,
@@ -23,7 +26,7 @@ export const DataProvider = ({ children }) => {
           },
         }
       );
-
+      console.log("Refresh token response:", res.data);
       if (res.data.accessToken) {
         setToken(res.data.accessToken);
       } else {
