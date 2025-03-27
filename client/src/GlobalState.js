@@ -18,7 +18,7 @@ export const DataProvider = ({ children }) => {
       console.log("Attempting to refresh token...");
 
       const res = await axios.post(
-        "/user/refreshtoken",
+        "/user/refresh_token",
         {},
         {
           headers: {
