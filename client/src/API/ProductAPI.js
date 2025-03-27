@@ -5,7 +5,8 @@ function ProductAPI() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios.get("https://fakestoreapi.com/products")
+    axios
+      .get("https://fakestoreapi.com/products", { withCredentials: false })
       .then((res) => {
         console.log("API Response:", res.data);
         setProducts(res.data);
