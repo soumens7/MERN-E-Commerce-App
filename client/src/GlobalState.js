@@ -6,7 +6,7 @@ import UserAPI from "./API/UserAPI";
 export const GlobalState = createContext();
 
 //const API_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
-//axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 axios.defaults.baseURL =
   process.env.REACT_APP_API_URL || "http://localhost:4000";
 
