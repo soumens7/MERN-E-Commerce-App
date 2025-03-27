@@ -7,9 +7,11 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-
 const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:3000";
 
+// Middleware
+app.use(express.json());
+app.use(cookieParser());
 // CORS middleware
 app.use(
   cors({
@@ -61,7 +63,7 @@ mongoose
 function startServer() {
   app.use("/user", require("./routes/userRouter.js"));
   app.use("/api", require("./routes/categoryRouter.js"));
-  app.use("/api/upload", require("./routes/upload.js")); 
+  app.use("/api/upload", require("./routes/upload.js"));
   app.use("/api", require("./routes/productRouter.js"));
 
   app.listen(PORT, () => {
