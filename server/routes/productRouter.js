@@ -13,12 +13,10 @@ const axios = require("axios");
 
 router.get("/products", async (req, res) => {
   try {
-    // Fetch products from the external FakeStoreAPI
     const response = await axios.get("https://fakestoreapi.com/products");
-    // Return the data as JSON
-    res.json(response.data);
+    res.json(response.data); // pass it straight to frontend
   } catch (err) {
-    // Handle errors by sending a 500 error status
+    console.error("Failed to fetch from FakeStoreAPI:", err.message);
     res.status(500).json({ msg: "Error fetching products" });
   }
 });
