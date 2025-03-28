@@ -20,7 +20,7 @@ function Product() {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("https://fakestoreapi.com/products");
+      const res = await axios.get("/api/products");
       setProducts(res.data);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -29,9 +29,7 @@ function Product() {
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get(
-        "https://fakestoreapi.com/products/categories"
-      );
+      const res = await axios.get("/api/products/categories");
       setCategories(res.data);
     } catch (error) {
       console.error("Error fetching categories:", error);
@@ -46,9 +44,9 @@ function Product() {
     .filter((product) =>
       selectedCategory ? product.category === selectedCategory : true
     )
-  .sort((a, b) =>
-    sortOrder === "asc" ? a.price - b.price : b.price - a.price
-  );
+    .sort((a, b) =>
+      sortOrder === "asc" ? a.price - b.price : b.price - a.price
+    );
 
   return (
     <div className="products">
@@ -79,7 +77,7 @@ function Product() {
       {/* Display Filtered Products */}
       {filteredProducts.length > 0 ? (
         filteredProducts.map((product) => (
-          <ProductList key={product.id} product={product} isAdmin={isAdmin}/>
+          <ProductList key={product.id} product={product} isAdmin={isAdmin} />
         ))
       ) : (
         <p>No products found</p>
