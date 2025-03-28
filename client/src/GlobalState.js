@@ -9,7 +9,7 @@ export const GlobalState = createContext();
 
 axios.defaults.baseURL =
   process.env.REACT_APP_API_URL || "http://localhost:4000";
-axios.defaults.withCredentials = true;
+//axios.defaults.withCredentials = true;
 
 export const DataProvider = ({ children }) => {
   const [token, setToken] = useState(false);
