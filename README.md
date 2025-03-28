@@ -50,7 +50,7 @@ server/
 # Clone project
 
 ## Local Development
-git clone https://github.com/yourname/ecommerce-app.git
+git clone [https://github.com/yourname/ecommerce-app.git](https://github.com/soumens7/MERN-E-Commerce-App.git)
 
 # Setup client
 cd client
