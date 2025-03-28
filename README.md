@@ -68,6 +68,6 @@ REACT_APP_API_URL=http://localhost:4000
 
 server/.env
 PORT=4000
-CLIENT_URL=http://localhost:3000
-MONGODB_URL=your_mongodb_connection_string
+CLIENT_URL=http://localhost:3000  
+MONGODB_URL=your_mongodb_connection_string  
 JWT_SECRET=your_jwt_secret
