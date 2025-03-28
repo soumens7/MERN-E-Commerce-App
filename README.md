@@ -2,7 +2,7 @@
 
 A full-stack e-commerce web application built using the MERN stack (MongoDB, Express, React, Node.js). Features authentication, product display, category filtering, cart functionality, and secure token management.
 
-Check out the live version of the project [here](mern-e-commerce-app-tau.vercel.app)
+Check out the live version of the project [here](https://mern-e-commerce-app-tau.vercel.app/)
 
 
 ## 🚀 Features
