@@ -6,7 +6,7 @@ function ProductAPI() {
 
   useEffect(() => {
     axios
-      .get("/api/products", { withCredentials: true }) // talking to your backend
+      .get("/api/products", { withCredentials: false}) // talking to your backend
       .then((res) => {
         console.log("API Response:", res.data);
         setProducts(res.data);
