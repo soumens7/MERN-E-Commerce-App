@@ -58,9 +58,9 @@ npm install
 npm start
 
 # Setup server
-cd ../server
-npm install
-npm run dev
+cd ../server  
+npm install  
+npm run dev  
 
 ## Environment Variables
 client/.env
