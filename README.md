@@ -46,6 +46,7 @@ server/
 ├── routes/
 ├── middleware/
 └── server.js
+```
 # Clone project
 
 ## Local Development
