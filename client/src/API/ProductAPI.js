@@ -5,8 +5,7 @@ function ProductAPI() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("https://fakestoreapi.com/products/categories")
+    fetch("https://fakestoreapi.com/products/categories")
       .then((res) => {
         console.log("API Response:", res.data);
         setProducts(res.data);
