@@ -21,7 +21,7 @@ Check out the live version of the project [here](https://mern-e-commerce-app-tau
 
 ## 📦 Tech Stack
 
-**Frontend**: React, Axios, Context API, Tailwind (or CSS)  
+**Frontend**: React, Axios, Context API, CSS  
 **Backend**: Node.js, Express, MongoDB, Mongoose  
 **Security**: JWT, HttpOnly Cookies, CORS, Environment Variables
 
