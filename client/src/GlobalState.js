@@ -5,8 +5,6 @@ import UserAPI from "./API/UserAPI";
 
 export const GlobalState = createContext();
 
-//const API_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
-
 axios.defaults.baseURL =
   process.env.REACT_APP_API_URL || "http://localhost:4000";
 axios.defaults.withCredentials = true;
@@ -52,7 +50,7 @@ export const DataProvider = ({ children }) => {
     if (firstLogin) {
       if (!token) refreshToken();
     }
-  }, []); // ✅ Remove token from dependency to prevent infinite loop
+  }, []); // Remove token from dependency to prevent infinite loop
 
   const state = {
     token: [token, setToken],
