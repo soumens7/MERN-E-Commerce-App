@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { GlobalState } from "../../../GlobalState";
 import { Link } from "react-router-dom";
 import "./cart.css";
-
+import RazorpayCheckoutButton from "./RazorpayCheckoutButton";
 function Cart() {
   const state = useContext(GlobalState);
   const [cart] = state.userAPI.cart;
@@ -50,6 +50,10 @@ function Cart() {
           </div>
         );
       })}
+      {/* Razorpay Button */}
+      <div className="checkout-section">
+        <RazorpayCheckoutButton cart={cart} />
+      </div>
     </div>
   );
 }

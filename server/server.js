@@ -65,6 +65,7 @@ function startServer() {
   app.use("/api", require("./routes/categoryRouter.js"));
   app.use("/api/upload", require("./routes/upload.js"));
   app.use("/api", require("./routes/productRouter.js"));
+  app.use("/api/payment", require("./routes/paymentRouter"));
 
   app.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`);

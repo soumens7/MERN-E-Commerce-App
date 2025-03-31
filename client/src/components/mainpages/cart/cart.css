@@ -119,3 +119,13 @@
   margin: 100px 0;
   font-weight: 300;
 }
+.checkout-btn {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #008cff;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
