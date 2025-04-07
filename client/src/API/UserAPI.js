@@ -58,7 +58,15 @@ function UserAPI(token) {
       console.log("Updated cart:", updatedCart);
       setCart(updatedCart);
 
-      // We'll implement server-side saving later
+      await axios.patch(
+        "/user/addtocart",
+        { cart: updatedCart },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
     } else {
       alert("This product has been added to cart.");
     }

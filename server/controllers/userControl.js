@@ -146,6 +146,18 @@ const userControl = {
       return res.status(500).json({ msg: err.message }); // Handle errors
     }
   },
+  addToCart: async (req, res) => {
+    try {
+      const user = await Users.findById(req.user.id);
+      if (!user) return res.status(400).json({ msg: "User does not exist." });
+
+      user.cart = req.body.cart;
+      await user.save();
+      res.json({ msg: "Cart updated successfully!" });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
 };
 
 // Function to create JWT access token
