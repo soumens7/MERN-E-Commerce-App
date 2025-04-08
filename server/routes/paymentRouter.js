@@ -13,6 +13,10 @@ const razorpay = new Razorpay({
 // 🧾 Create Order
 router.post("/create-order", auth, async (req, res) => {
   try {
+    const { amount } = req.body;
+    if (!amount || amount <= 0) {
+      return res.status(400).json({ msg: "Invalid amount" });
+    }
     const options = {
       amount: req.body.amount * 100,
       currency: "INR",

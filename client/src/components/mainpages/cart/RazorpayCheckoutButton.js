@@ -12,7 +12,7 @@ const loadRazorpayScript = () => {
 
 const RazorpayCheckoutButton = ({ cart }) => {
   const amount = cart.reduce(
-    (acc, item) => acc + item.price * item.quantity,
+    (acc, item) => acc + item.price * (item.quantity || 1),
     0
   );
   const token = localStorage.getItem("access_token"); // or via context
