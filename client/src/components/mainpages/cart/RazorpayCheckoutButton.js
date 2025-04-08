@@ -10,40 +10,55 @@ const loadRazorpayScript = () => {
   });
 };
 
-const RazorpayCheckoutButton = ({ amount }) => {
+const RazorpayCheckoutButton = ({ cart }) => {
+  const amount = cart.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+  const token = localStorage.getItem("access_token"); // or via context
+
   const handleCheckout = async () => {
     const loaded = await loadRazorpayScript();
-    if (!loaded) {
-      alert("Razorpay SDK failed to load. Are you online?");
-      return;
-    }
+    if (!loaded) return alert("Razorpay SDK failed to load.");
 
-    // Create order on backend
-    const { data: order } = await axios.post("/api/payment/create-order", {
-      amount,
-    });
+    const { data: order } = await axios.post(
+      "/api/payment/create-order",
+      { amount },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
 
     const options = {
       key: process.env.REACT_APP_RAZORPAY_KEY_ID,
       amount: order.amount,
-      currency: order.currency,
-      name: "MERN E-Commerce",
-      description: "Test Payment",
+      currency: "INR",
       order_id: order.id,
-      handler: function (response) {
-        alert("Payment successful!");
-        console.log("Payment ID:", response.razorpay_payment_id);
-        console.log("Order ID:", response.razorpay_order_id);
-        console.log("Signature:", response.razorpay_signature);
+      name: "MERN Shop",
+      description: "Order Payment",
+      handler: async function (response) {
+        try {
+          await axios.post(
+            "/api/payment/verify",
+            {
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+              cart,
+              total: amount,
+            },
+            { headers: { Authorization: `Bearer ${token}` } }
+          );
+          alert("✅ Payment successful!");
+          window.location.href = "/";
+        } catch (error) {
+          alert("❌ Payment verification failed");
+        }
       },
       prefill: {
         name: "Test User",
-        email: "test@razorpay.com",
+        email: "test@example.com",
         contact: "9999999999",
       },
-      theme: {
-        color: "#3399cc",
-      },
+      theme: { color: "#3399cc" },
     };
 
     const rzp = new window.Razorpay(options);
@@ -52,7 +67,8 @@ const RazorpayCheckoutButton = ({ amount }) => {
 
   return (
     <button onClick={handleCheckout} className="razorpay-btn">
-      Pay ₹{amount}
+      {/* Pay ₹{amount.toFixed(2)} */}
+      Pay Now
     </button>
   );
 };

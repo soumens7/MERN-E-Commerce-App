@@ -71,11 +71,33 @@ function UserAPI(token) {
       alert("This product has been added to cart.");
     }
   };
+  const removeFromCart = async (productId) => {
+    const newCart = cart.filter(
+      (item) => (item._id || item.id) !== (productId._id || productId.id)
+    );
+
+    setCart(newCart);
+
+    try {
+      await axios.patch(
+        "/user/addtocart", // reuse same backend route
+        { cart: newCart },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    } catch (err) {
+      console.error("❌ Failed to update cart:", err);
+    }
+  };
   return {
     isLogged: [isLogged, setIsLogged],
     isAdmin: [isAdmin, setIsAdmin],
     cart: [cart, setCart],
     addCart: addCart,
+    removeFromCart: removeFromCart,
   };
 }
 

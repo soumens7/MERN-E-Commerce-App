@@ -10,12 +10,11 @@ header {
 
 header.logo {
   flex: 1;
-
 }
 
 header a {
-    text-transform: uppercase;
-    color: black;
+  text-transform: uppercase;
+  color: black;
 }
 
 header ul {
@@ -25,21 +24,35 @@ header ul {
 }
 
 header ul li:hover {
-  opacity: 1
+  opacity: 1;
 }
-.menu{
-    display: none;
+.menu {
+  display: none;
 }
-.cart-icon{
-    position: relative;
+.cart-icon {
+  position: relative;
+}
+.cart-icon span {
+  background: #e85151;
+  border-radius: 20px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 5px 10px;
+  font-size: 10px;
+}
+.cart-icon.pulse {
+  animation: pulse 0.3s ease;
+}
 
-}
-.cart-icon span{
-    background: crimson;
-    border-radius: 20px;
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    padding: 5px 10px;
-    font-size: 10px;
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
