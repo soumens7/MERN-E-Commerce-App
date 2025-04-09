@@ -92,12 +92,27 @@ function UserAPI(token) {
       console.error("❌ Failed to update cart:", err);
     }
   };
+  const updateCartQuantity = (product, action) => {
+    const updatedCart = cart.map((item) => {
+      if ((item._id || item.id) === (product._id || product.id)) {
+        const newQuantity =
+          action === "increment"
+            ? item.quantity + 1
+            : Math.max(1, item.quantity - 1);
+        return { ...item, quantity: newQuantity };
+      }
+      return item;
+    });
+
+    setCart(updatedCart);
+  };
   return {
     isLogged: [isLogged, setIsLogged],
     isAdmin: [isAdmin, setIsAdmin],
     cart: [cart, setCart],
     addCart: addCart,
     removeFromCart: removeFromCart,
+    updateCartQuantity,
   };
 }
 
