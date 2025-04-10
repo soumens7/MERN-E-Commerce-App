@@ -7,15 +7,25 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:3000";
+//const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:3000";
 
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
 // CORS middleware
+const allowedOrigins = [
+  "mern-e-commerce-app-tau.vercel.app",
+  "http://localhost:3000",
+];
 app.use(
   cors({
-    origin: CLIENT_URL,
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
     exposedHeaders: ["set-cookie"],
     methods: ["POST", "GET", "PATCH", "PUT", "DELETE"],
