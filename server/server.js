@@ -13,10 +13,7 @@ const PORT = process.env.PORT || 4000;
 app.use(express.json());
 app.use(cookieParser());
 // CORS middleware
-const allowedOrigins = [
-  "https://mern-e-commerce-app-tau.vercel.app",
-  "http://localhost:3000",
-];
+const allowedOrigins = ["https://mern-e-commerce-app-tau.vercel.app"];
 app.use(
   cors({
     origin: function (origin, callback) {
@@ -29,10 +26,16 @@ app.use(
     credentials: true,
     exposedHeaders: ["set-cookie"],
     methods: ["POST", "GET", "PATCH", "PUT", "DELETE"],
-    credentials: true, // Allow credentials
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+app.use((req, res, next) => {
+  res.setTimeout(10000, () => {
+    console.warn("⏳ Request timed out");
+    res.status(503).json({ msg: "Server timeout, try again." });
+  });
+  next();
+});
 
 // Middleware to set Permissions-Policy header (at the top)
 app.use((req, res, next) => {
@@ -45,8 +48,6 @@ app.use((req, res, next) => {
 });
 
 // Middleware
-//app.use(express.json());
-//app.use(cookieParser());
 app.use(
   fileUpload({
     useTempFiles: true,
