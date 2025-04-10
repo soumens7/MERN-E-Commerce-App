@@ -59,7 +59,7 @@ function UserAPI(token) {
       setCart(updatedCart);
 
       await axios.patch(
-        "/user/addtocart",
+        `${API_URL}/user/addtocart`,
         { cart: updatedCart },
         {
           headers: {
@@ -80,7 +80,7 @@ function UserAPI(token) {
 
     try {
       await axios.patch(
-        "/user/addtocart", // reuse same backend route
+        `${API_URL}/user/addtocart`, // reuse same backend route
         { cart: newCart },
         {
           headers: {
