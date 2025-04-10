@@ -20,6 +20,7 @@ app.use(
     exposedHeaders: ["set-cookie"],
     methods: ["POST", "GET", "PATCH", "PUT", "DELETE"],
     credentials: true, // Allow credentials
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
