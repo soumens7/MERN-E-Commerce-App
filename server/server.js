@@ -18,8 +18,8 @@ app.use(
     origin: CLIENT_URL,
     credentials: true,
     exposedHeaders: ["set-cookie"],
-    methods: ["POST", "GET", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+    methods: ["POST", "GET", "PATCH", "PUT", "DELETE"],
+    credentials: true, // Allow credentials
   })
 );
 
