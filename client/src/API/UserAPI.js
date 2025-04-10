@@ -105,6 +105,19 @@ function UserAPI(token) {
     });
 
     setCart(updatedCart);
+    axios
+      .patch(
+        `${API_URL}/user/addtocart`,
+        { cart: updatedCart },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .catch((err) => {
+        console.error("❌ Failed to update cart quantity:", err);
+      });
   };
   return {
     isLogged: [isLogged, setIsLogged],
