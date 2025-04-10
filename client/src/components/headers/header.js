@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import { FaShoppingCart } from "react-icons/fa";
@@ -13,6 +13,17 @@ const Header = () => {
   const [isLogged, setIsLogged] = state.userAPI.isLogged;
   const [isAdmin, setIsAdmin] = state.userAPI.isAdmin;
   const [cart] = state.userAPI.cart;
+  const itemCount = cart.reduce((acc, item) => acc + (item.quantity || 1), 0);
+  const cartIconRef = useRef(null);
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    if (cartIconRef.current) {
+      setAnimate(true);
+      const timeout = setTimeout(() => setAnimate(false), 300);
+      return () => clearTimeout(timeout);
+    }
+  }, [itemCount]);
 
   const logoutUser = async () => {
     await axios.get("/user/logout");
@@ -82,8 +93,11 @@ const Header = () => {
       {isAdmin ? (
         ""
       ) : (
-        <div className="cart-icon">
-          <span>{cart.length}</span>
+        <div
+          ref={cartIconRef}
+          className={`cart-icon ${animate ? "pulse" : ""}`}
+        >
+          <span>{itemCount}</span>
           <Link to="/cart">
             <FaShoppingCart size={30} />
           </Link>
