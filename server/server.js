@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(cookieParser());
 // CORS middleware
 const allowedOrigins = [
-  "mern-e-commerce-app-tau.vercel.app",
+  "https://mern-e-commerce-app-tau.vercel.app",
   "http://localhost:3000",
 ];
 app.use(
