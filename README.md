@@ -73,13 +73,13 @@ npm run dev
 REACT_APP_API_URL=http://localhost:4000
 
 ## server/.env
-PORT=4000
-CLIENT_URL=http://localhost:3000
-MONGODB_URL=your_mongodb_uri
-ACCESS_TOKEN_SECRET=your_jwt_access_secret
-REFRESH_TOKEN_SECRET=your_jwt_refresh_secret
-RAZORPAY_KEY_ID=your_test_key_id
-RAZORPAY_KEY_SECRET=your_test_key_secret
+PORT=4000  
+CLIENT_URL=http://localhost:3000  
+MONGODB_URL=your_mongodb_uri  
+ACCESS_TOKEN_SECRET=your_jwt_access_secret  
+REFRESH_TOKEN_SECRET=your_jwt_refresh_secret  
+RAZORPAY_KEY_ID=your_test_key_id  
+RAZORPAY_KEY_SECRET=your_test_key_secret  
 
 #  📦 Deployment (Vercel + Render)
 ✅ Frontend: Deploy to Vercel
