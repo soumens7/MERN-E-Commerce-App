@@ -18,7 +18,7 @@ const RazorpayCheckoutButton = ({ cart }) => {
     0
   );
   const token = localStorage.getItem("access_token"); // or via context
-
+  console.log("🔐 Access Token (Frontend):", token);
   const handleCheckout = async () => {
     const loaded = await loadRazorpayScript();
     if (!loaded) return alert("Razorpay SDK failed to load.");
