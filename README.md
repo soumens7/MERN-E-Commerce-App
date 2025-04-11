@@ -59,9 +59,9 @@ server/
 git clone [https://github.com/yourname/ecommerce-app.git](https://github.com/soumens7/MERN-E-Commerce-App.git)
 
 ## ⚙️ Client Setup
-cd client
-npm install
-npm start
+cd client  
+npm install  
+npm start 
 
 ## ⚙️ Server Setup
 cd ../server  
