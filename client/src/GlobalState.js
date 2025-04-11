@@ -29,11 +29,11 @@ export const DataProvider = ({ children }) => {
 
       console.log("Refresh token response:", res.data);
       if (res.data.accessToken) {
-        setToken(res.data.accessToken);
-        localStorage.setItem("access_token", res.data.accessToken);
+        setToken(res.data.accessToken); // Set token state to the new access token
+        localStorage.setItem("access_token", res.data.accessToken); // Store access token in local storage
       } else {
-        localStorage.removeItem("firstLogin");
-        setToken(false);
+        localStorage.removeItem("firstLogin"); // Remove firstLogin if no access token
+        setToken(false); // Set token to false if no access token is received
       }
     } catch (error) {
       console.error("Refresh token error:", {
@@ -41,7 +41,7 @@ export const DataProvider = ({ children }) => {
         response: error.response?.data,
         config: error.config,
       });
-      localStorage.removeItem("firstLogin");
+      localStorage.removeItem("firstLogin"); // Remove firstLogin if there's an error
       setToken(false);
     }
   };

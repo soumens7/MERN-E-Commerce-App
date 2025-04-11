@@ -19,8 +19,8 @@ function Login() {
     try {
       const res = await axios.post(`${API_URL}/user/login`, { ...user }); // sends to backend server to check for credentials
 
-      localStorage.setItem("firstLogin", true);
-      localStorage.setItem("access_token", res.data.accessToken);
+      localStorage.setItem("firstLogin", true); // store first login in local storage
+      localStorage.setItem("access_token", res.data.accessToken); // store access token in local storage
       window.location.href = "/";
       console.log(user);
     } catch (err) {
