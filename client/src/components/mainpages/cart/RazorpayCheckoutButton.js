@@ -24,7 +24,7 @@ const RazorpayCheckoutButton = ({ cart }) => {
     if (!loaded) return alert("Razorpay SDK failed to load.");
 
     const { data: order } = await axios.post(
-      `{API_URL}/api/payment/create-order`,
+      `${API_URL}/api/payment/create-order`,
       { amount },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -39,7 +39,7 @@ const RazorpayCheckoutButton = ({ cart }) => {
       handler: async function (response) {
         try {
           await axios.post(
-            `{API_URL}/api/payment/verify`,
+            `${API_URL}/api/payment/verify`,
             {
               razorpay_order_id: response.razorpay_order_id,
               razorpay_payment_id: response.razorpay_payment_id,
