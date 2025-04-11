@@ -16,13 +16,7 @@ app.use(cookieParser());
 const allowedOrigins = ["https://mern-e-commerce-app-tau.vercel.app"];
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: true,
     credentials: true,
     exposedHeaders: ["set-cookie"],
     methods: ["POST", "GET", "PATCH", "PUT", "DELETE"],
