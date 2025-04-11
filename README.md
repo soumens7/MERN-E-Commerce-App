@@ -7,22 +7,28 @@ Check out the live version of the project [here](https://mern-e-commerce-app-tau
 
 ## 🚀 Features
 
-- 🔐 User Authentication (JWT + Refresh Token)
-- 👤 Login, Register, Logout
-- 🛍️ Product Display (via FakeStoreAPI proxy)
-- 🧾 Add to Cart
-- 📂 Category Filter + Sorting
-- 🧱 MongoDB integration for users & more
-- ☁️ Cloud image upload (optional)
-- ⚙️ Protected routes for Admin
-- ✅ CORS-safe API access
+- 🔐 Secure Auth: JWT (Access + Refresh Token) with HttpOnly cookies
+- 👤 User Login, Register, Logout
+- 🛒 Add to Cart with Quantity Management
+- 💾 Cart Saved to DB (MongoDB) per User
+- 📦 Product Display + Filtering + Sorting
+- 📁 Admin Dashboard for Categories & Products
+- ☁️ Cloud Upload (Images)
+- 💳 Razorpay Integration (Test & Live Ready)
+- 🔄 Auto Token Refresh on Load
+- 🔒 Protected Routes (Admin-only Access)
+- 🌍 Fully CORS-safe Deployment
+- 🧪 Token Expiry Retry Handling
 
 ---
 
 ## 📦 Tech Stack
 
-**Frontend**: React, Axios, Context API, CSS  
-**Backend**: Node.js, Express, MongoDB, Mongoose  
+**Frontend**:  
+React, Context API, Axios, Razorpay Checkout, CSS  
+
+**Backend**:  
+Node.js, Express.js, MongoDB, Mongoose, Razorpay, JWT, Bcrypt, Cookie-Parser, CORS 
 **Security**: JWT, HttpOnly Cookies, CORS, Environment Variables
 
 ---
@@ -31,33 +37,32 @@ Check out the live version of the project [here](https://mern-e-commerce-app-tau
 
 ```txt
 client/
-│
 ├── src/
 │   ├── API/
 │   ├── components/
 │   ├── pages/
 │   ├── utils/
-│   └── GlobalState.js
-│
+│   ├── GlobalState.js
+│   └── App.js
 server/
-│
 ├── controllers/
+├── middleware/
 ├── models/
 ├── routes/
-├── middleware/
-└── server.js
+├── server.js
+└── .env
 ```
 # Clone project
 
 ## Local Development
 git clone [https://github.com/yourname/ecommerce-app.git](https://github.com/soumens7/MERN-E-Commerce-App.git)
 
-# Setup client
+# Client Setop
 cd client
 npm install
 npm start
 
-# Setup server
+# Server Setup
 cd ../server  
 npm install  
 npm run dev  
@@ -68,6 +73,27 @@ REACT_APP_API_URL=http://localhost:4000
 
 server/.env
 PORT=4000
+CLIENT_URL=http://localhost:3000
+MONGODB_URL=your_mongodb_uri
+ACCESS_TOKEN_SECRET=your_jwt_access_secret
+REFRESH_TOKEN_SECRET=your_jwt_refresh_secret
+RAZORPAY_KEY_ID=your_test_key_id
+RAZORPAY_KEY_SECRET=your_test_key_secret
+
+server/.env
+PORT=4000
 CLIENT_URL=http://localhost:3000  
 MONGODB_URL=your_mongodb_connection_string  
 JWT_SECRET=your_jwt_secret
+
+#  Deployment (Vercel + Render)
+✅ Frontend: Deploy to Vercel
+
+✅ Backend + DB: Deploy to Render
+
+🛠️ Be sure to set all .env variables in both environments
+
+⚠️ Set Razorpay keys properly for Test/Live Mode
+
+# Contributions
+Pull requests are welcome! For major changes, please open an issue first.
