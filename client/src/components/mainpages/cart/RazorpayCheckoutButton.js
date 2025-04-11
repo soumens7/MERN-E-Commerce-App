@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
+
 const loadRazorpayScript = () => {
   return new Promise((resolve) => {
     const script = document.createElement("script");
@@ -22,7 +24,7 @@ const RazorpayCheckoutButton = ({ cart }) => {
     if (!loaded) return alert("Razorpay SDK failed to load.");
 
     const { data: order } = await axios.post(
-      "/api/payment/create-order",
+      `{API_URL}/api/payment/create-order`,
       { amount },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -37,7 +39,7 @@ const RazorpayCheckoutButton = ({ cart }) => {
       handler: async function (response) {
         try {
           await axios.post(
-            "/api/payment/verify",
+            `{API_URL}/api/payment/verify`,
             {
               razorpay_order_id: response.razorpay_order_id,
               razorpay_payment_id: response.razorpay_payment_id,
