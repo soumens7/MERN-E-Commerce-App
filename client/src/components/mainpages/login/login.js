@@ -17,9 +17,10 @@ function Login() {
   const loginSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${API_URL}/user/login`, { ...user }); // sends to backend server to check for credentials
+      const res = await axios.post(`${API_URL}/user/login`, { ...user }); // sends to backend server to check for credentials
 
       localStorage.setItem("firstLogin", true);
+      localStorage.setItem("access_token", res.data.accessToken);
       window.location.href = "/";
       console.log(user);
     } catch (err) {

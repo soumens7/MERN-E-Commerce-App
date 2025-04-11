@@ -30,6 +30,7 @@ export const DataProvider = ({ children }) => {
       console.log("Refresh token response:", res.data);
       if (res.data.accessToken) {
         setToken(res.data.accessToken);
+        localStorage.setItem("access_token", res.data.accessToken);
       } else {
         localStorage.removeItem("firstLogin");
         setToken(false);
