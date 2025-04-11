@@ -52,26 +52,27 @@ server/
 ├── server.js
 └── .env
 ```
-# Clone project
+# 🛠️ Getting Started Locally
+## Clone project
 
 ## Local Development
 git clone [https://github.com/yourname/ecommerce-app.git](https://github.com/soumens7/MERN-E-Commerce-App.git)
 
-# Client Setop
+## ⚙️ Client Setup
 cd client
 npm install
 npm start
 
-# Server Setup
+## ⚙️ Server Setup
 cd ../server  
 npm install  
 npm run dev  
 
-## Environment Variables
-client/.env
+# 🔐 Environment Variables
+## client/.env
 REACT_APP_API_URL=http://localhost:4000
 
-server/.env
+## server/.env
 PORT=4000
 CLIENT_URL=http://localhost:3000
 MONGODB_URL=your_mongodb_uri
@@ -80,13 +81,7 @@ REFRESH_TOKEN_SECRET=your_jwt_refresh_secret
 RAZORPAY_KEY_ID=your_test_key_id
 RAZORPAY_KEY_SECRET=your_test_key_secret
 
-server/.env
-PORT=4000
-CLIENT_URL=http://localhost:3000  
-MONGODB_URL=your_mongodb_connection_string  
-JWT_SECRET=your_jwt_secret
-
-#  Deployment (Vercel + Render)
+#  📦 Deployment (Vercel + Render)
 ✅ Frontend: Deploy to Vercel
 
 ✅ Backend + DB: Deploy to Render
