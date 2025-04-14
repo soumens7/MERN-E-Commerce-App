@@ -44,8 +44,8 @@ const userControl = {
         httpOnly: true,
         secure: true, // Required for HTTPS
         sameSite: "None", // Required for cross-origin with HTTPS,
-        domain: "mern-e-commerce-app-df8a.onrender.com",
-        path: "/",
+        // domain: "mern-e-commerce-app-df8a.onrender.com",
+        path: "/user/refresh_token",
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       });
 
@@ -108,8 +108,8 @@ const userControl = {
         httpOnly: true,
         secure: true, // Required for HTTPS
         sameSite: "None", // Required for cross-origin with HTTPS,
-        domain: "mern-e-commerce-app-df8a.onrender.com",
-        path: "/",
+        // domain: "mern-e-commerce-app-df8a.onrender.com",
+        path: "/user/refresh_token",
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       });
 
