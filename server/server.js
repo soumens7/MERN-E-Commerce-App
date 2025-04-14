@@ -12,6 +12,10 @@ const PORT = process.env.PORT || 4000;
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
+app.get("/debug-cookies", (req, res) => {
+  res.json({ cookies: req.cookies });
+});
+
 // CORS middleware
 const allowedOrigins = ["https://mern-e-commerce-app-tau.vercel.app"];
 app.use(
