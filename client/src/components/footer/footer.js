@@ -8,7 +8,7 @@ function Footer() {
       <div className="footer-sections">
         <div className="footer-col">
           <h4>Get to Know Us</h4>
-          <Link to="/">About Us</Link>
+          <Link to="/https://github.com/soumens7/MERN-E-Commerce-App">About Us</Link>
           <Link to="/">Careers</Link>
           <Link to="/">Press Releases</Link>
         </div>
