@@ -53,11 +53,11 @@ const Header = () => {
         {/* <li>
           <Link to="/history">History</Link>
         </li> */}
-        <li>
+        <button className="header-btn">
           <Link to="/" onClick={logoutUser}>
             Logout
           </Link>
-        </li>
+        </button>
       </>
     );
   };
@@ -81,9 +81,9 @@ const Header = () => {
         {isLogged ? (
           loggedRouter()
         ) : (
-          <li>
-            <Link to="/login">Login or Register</Link>
-          </li>
+          <button className="header-btn">
+            <Link to="/login">Login / Register</Link>
+          </button>
         )}
 
         <li>
