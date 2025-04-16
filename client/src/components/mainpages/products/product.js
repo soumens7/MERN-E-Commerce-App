@@ -49,39 +49,43 @@ function Product() {
     );
 
   return (
-    <div className="products">
-      {/* Search Bar */}
-      <input
-        type="text"
-        placeholder="Search Products..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+    <div className="product-page">
+      <div className="filter-bar">
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+        >
+          <option value="">All Categories</option>
+          {categories.map((cat) => (
+            <option key={cat} value={cat}>
+              {cat}
+            </option>
+          ))}
+        </select>
+        <select
+          value={sortOrder}
+          onChange={(e) => setSortOrder(e.target.value)}
+        >
+          <option value="asc">Price: Low to High</option>
+          <option value="desc">Price: High to Low</option>
+        </select>
+      </div>
 
-      {/* Category Dropdown */}
-      <select onChange={(e) => setSelectedCategory(e.target.value)}>
-        <option value="">All Categories</option>
-        {categories.map((cat) => (
-          <option key={cat} value={cat}>
-            {cat}
-          </option>
-        ))}
-      </select>
-
-      {/* Sorting Dropdown */}
-      <select onChange={(e) => setSortOrder(e.target.value)}>
-        <option value="asc">Price: Low to High</option>
-        <option value="desc">Price: High to Low</option>
-      </select>
-
-      {/* Display Filtered Products */}
-      {filteredProducts.length > 0 ? (
-        filteredProducts.map((product) => (
-          <ProductList key={product.id} product={product} isAdmin={isAdmin} />
-        ))
-      ) : (
-        <p>No products found</p>
-      )}
+      <div className="products">
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => (
+            <ProductList key={product.id} product={product} isAdmin={isAdmin} />
+          ))
+        ) : (
+          <p>No products found</p>
+        )}
+      </div>
     </div>
   );
 }
