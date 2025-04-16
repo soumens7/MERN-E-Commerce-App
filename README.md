@@ -12,7 +12,7 @@ Check out the live version of the project [here](https://mern-e-commerce-app-tau
 - 💾 Cart Saved to DB (MongoDB) per User
 - 📦 Product Display + Filtering + Sorting
 - 📁 Admin Dashboard for Categories & Products
-- 🖼️ Product via FakeStore API
+- 🖼️ Products via FakeStore API
 - 💳 Razorpay Integration (Test & Live Ready)
 - 🔄 Auto Token Refresh on Load
 - 🔒 Protected Routes (Admin-only Access)
