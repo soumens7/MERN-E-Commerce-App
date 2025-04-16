@@ -15,13 +15,13 @@ export const DataProvider = ({ children }) => {
   const refreshToken = async () => {
     try {
       console.log("Attempting to refresh token...");
-
+      const refreshToken = localStorage.getItem("refresh_token");
       const res = await axios.post(
         "/user/refresh_token",
         {},
         {
           headers: {
-            "Content-Type": "application/json",
+            Authorization: `Bearer ${refreshToken}`,
           },
           // withCredentials is now set by defaults
         }

@@ -18,6 +18,7 @@ function Login() {
     e.preventDefault();
     try {
       const res = await axios.post(`${API_URL}/user/login`, { ...user }); // sends to backend server to check for credentials
+      localStorage.setItem("refresh_token", res.data.refreshToken);
 
       localStorage.setItem("firstLogin", true); // store first login in local storage
       localStorage.setItem("access_token", res.data.accessToken); // store access token in local storage

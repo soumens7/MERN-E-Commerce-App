@@ -18,7 +18,9 @@ function Register() {
   const registerSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${API_URL}/user/register`, { ...user });
+      const res = await axios.post(`${API_URL}/user/register`, { ...user });
+
+      localStorage.setItem("refresh_token", res.data.refreshToken);
 
       localStorage.setItem("firstLogin", true);
       window.location.href = "/";

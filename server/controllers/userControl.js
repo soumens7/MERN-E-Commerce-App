@@ -40,17 +40,18 @@ const userControl = {
       const refreshToken = createRefreshToken({ id: newUser._id });
       console.log("Setting cookie with refreshToken:", refreshToken);
       // Store refresh token in HTTP-only cookie for security
-      res.cookie("refreshtoken", refreshToken, {
-        httpOnly: true,
-        secure: true, // Required for HTTPS
-        sameSite: "None", // Required for cross-origin with HTTPS,
-        // domain: "mern-e-commerce-app-df8a.onrender.com",
-        path: "/user/refresh_token",
-        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-      });
+      // res.cookie("refreshtoken", refreshToken, {
+      //   httpOnly: true,
+      //   secure: true, // Required for HTTPS
+      //   sameSite: "None", // Required for cross-origin with HTTPS,
+      //   // domain: "mern-e-commerce-app-df8a.onrender.com",
+      //   path: "/user/refresh_token",
+      //   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      // });
 
-      // Send access token in response
-      res.json({ accessToken });
+      // // Send access token in response
+      // res.json({ accessToken });
+      res.json({ accessToken, refreshToken });
     } catch (err) {
       return res.status(500).json({ msg: err.message }); // Handle errors
     }
@@ -60,7 +61,7 @@ const userControl = {
   refreshToken: async (req, res) => {
     try {
       // Retrieve refresh token from cookies
-      const rf_token = req.cookies.refreshtoken;
+      const rf_token = req.header("Authorization")?.replace("Bearer ", "");
       console.log("Cookies received:", req.cookies);
       // Check if refresh token exists
       if (!rf_token)
@@ -104,17 +105,18 @@ const userControl = {
 
       console.log("Setting cookie with refreshToken:", refreshToken);
       // Store refresh token in HTTP-only cookie
-      res.cookie("refreshtoken", refreshToken, {
-        httpOnly: true,
-        secure: true, // Required for HTTPS
-        sameSite: "None", // Required for cross-origin with HTTPS,
-        // domain: "mern-e-commerce-app-df8a.onrender.com",
-        path: "/user/refresh_token",
-        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-      });
+      // res.cookie("refreshtoken", refreshToken, {
+      //   httpOnly: true,
+      //   secure: true, // Required for HTTPS
+      //   sameSite: "None", // Required for cross-origin with HTTPS,
+      //   // domain: "mern-e-commerce-app-df8a.onrender.com",
+      //   path: "/user/refresh_token",
+      //   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      // });
 
-      // Send access token in response
-      res.json({ accessToken });
+      // // Send access token in response
+      // res.json({ accessToken });
+      res.json({ accessToken, refreshToken });
     } catch (err) {
       return res.status(500).json({ msg: err.message }); // Handle errors
     }
