@@ -4,7 +4,7 @@ A full-stack e-commerce web application built using the MERN stack (MongoDB, Exp
 
 Check out the live version of the project [here](https://mern-e-commerce-app-tau.vercel.app/)
 
-![Website Demo](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWZ5d2ZqMGc3YzRtejIwdG8wbWdtbzh2b2xsbWs1eWhwb2IyaDR0ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/s8Nkt5FvxyCFOIGZnP/giphy.gif)
+![Website Demo](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHIwbzA3czh1enBkbnJrMG5zbXQxZGFqMmpuNjI4MHJnbWljdTg0biZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/y7zHv3IM2uy9yBIOiG/giphy.gif)
 
 ## 🚀 Features
 
