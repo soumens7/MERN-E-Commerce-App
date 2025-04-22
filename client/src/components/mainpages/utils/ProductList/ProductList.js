@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { memo } from "react";
 import BtnRender from "./BtnRender";
 
 const ProductList = ({ product, isAdmin, addCart }) => {
@@ -18,4 +17,5 @@ const ProductList = ({ product, isAdmin, addCart }) => {
   );
 };
 
-export default ProductList;
+// Wrap the component with React.memo
+export default memo(ProductList);
