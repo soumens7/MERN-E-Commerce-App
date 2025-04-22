@@ -4,6 +4,8 @@ A full-stack e-commerce web application built using the MERN stack (MongoDB, Exp
 
 Check out the live version of the project [here](https://mern-e-commerce-app-tau.vercel.app/)
 
+![Website Demo](/Users/soumensarkar/Downloads/giphy.mp4)
+
 ## 🚀 Features
 
 - 🔐 Secure Auth: JWT (Access + Refresh Token) with HttpOnly cookies
