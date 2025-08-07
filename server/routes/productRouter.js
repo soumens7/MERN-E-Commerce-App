@@ -3,7 +3,7 @@ const axios = require("axios");
 
 router.get("/products", async (req, res) => {
   try {
-    const response = await axios.get("https://fakestoreapi.com/products");
+    const response = await axios.get("https://freetestapi.com/api/v1/products");
     res.json(response.data); // pass it straight to frontend
   } catch (err) {
     console.error("Failed to fetch from FakeStoreAPI:", err.message);
