@@ -3,10 +3,9 @@ const axios = require("axios");
 
 router.get("/products", async (req, res) => {
   try {
-    const response = await axios.get("https://dummyjson.com/products", {
+    const response = await axios.get("https://fakestoreapi.com/products", {
       headers: {
         "User-Agent": "Mozilla/5.0",
-        "Accept": "application/json",
       },
     });
     res.json(response.data);
@@ -23,12 +22,14 @@ router.get("/products", async (req, res) => {
 });
 router.get("/products/categories", async (req, res) => {
   try {
-    const response = await axios.get("https://dummyjson.com/products/categories", {
-      headers: {
-        "User-Agent": "Mozilla/5.0",
-        "Accept": "application/json",
-      },
-    });
+    const response = await axios.get(
+      "https://fakestoreapi.com/products/categories",
+      {
+        headers: {
+          "User-Agent": "Mozilla/5.0",
+        },
+      }
+    );
     res.json(response.data);
   } catch (err) {
     console.error("Failed to fetch categories:", err.message);
