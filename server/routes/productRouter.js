@@ -3,10 +3,10 @@ const axios = require("axios");
 
 router.get("/products", async (req, res) => {
   try {
-    const response = await axios.get("https://freetestapi.com/api/v1/products");
+    const response = await axios.get("https://dummyjson.com/docs/products");
     res.json(response.data); // pass it straight to frontend
   } catch (err) {
-    console.error("Failed to fetch from freetestAPI:", err.message);
+    console.error("Failed to fetch from dummyjsonAPI:", err.message);
     res.status(500).json({ msg: "Error fetching products" });
   }
 });
