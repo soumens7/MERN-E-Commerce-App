@@ -3,7 +3,11 @@ const axios = require("axios");
 
 router.get("/products", async (req, res) => {
   try {
-    const response = await axios.get("https://dummyjson.com/docs/products");
+    const response = await axios.get("https://fakestoreapi.com/products", {
+      headers: {
+        "User-Agent": "Mozilla/5.0",
+      },
+    });
     res.json(response.data); // pass it straight to frontend
   } catch (err) {
     console.error("Failed to fetch from dummyjsonAPI:", err.message);
@@ -13,7 +17,11 @@ router.get("/products", async (req, res) => {
 router.get("/products/categories", async (req, res) => {
   try {
     const response = await axios.get(
-      "https://fakestoreapi.com/products/categories"
+      "https://fakestoreapi.com/products/categories", {
+        headers: {
+          "User-Agent": "Mozilla/5.0",
+        },
+      }
     );
     res.json(response.data);
   } catch (err) {
