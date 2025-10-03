@@ -1,3 +1,3 @@
 test("client test runner runs", () => {
-  expect(true).tobe(true);
+  expect(true).toBe(true);
 });
