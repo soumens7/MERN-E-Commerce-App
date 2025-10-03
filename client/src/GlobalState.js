@@ -51,7 +51,7 @@ export const DataProvider = ({ children }) => {
     if (firstLogin) {
       if (!token) refreshToken();
     }
-  }, []); // Remove token from dependency to prevent infinite loop
+  }, [token]); // Remove token from dependency to prevent infinite loop
 
   const state = {
     token: [token, setToken],
