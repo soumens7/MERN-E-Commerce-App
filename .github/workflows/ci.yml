@@ -36,7 +36,7 @@ jobs:
         working-directory: ./client
         env:
           CI: true
-        run: npm test --if-present -- --watchAll=false --passWithNoTests
+        run: npm test --if-present -- --watchAll=false
 
       - name: Build client
         working-directory: ./client
