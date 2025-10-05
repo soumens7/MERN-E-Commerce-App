@@ -34,11 +34,16 @@ router.get("/products/categories", async (req, res) => {
   } catch (err) {
     console.error("❌ FakeStore failed, trying DummyJSON...");
     try {
-      const fallback = await axios.get("https://dummyjson.com/products/categories");
-      res.json(fallback.data.products.categories); // Note: dummyjson wraps in .products
+      const response = await axios.get(
+        "https://dummyjson.com/products/categories"
+      );
+      const categories = response.data.map(
+        (cat) => cat.name || cat.slug || cat // Fallback for string or object type
+      );
+      return res.json(categories);
     } catch (error) {
-      console.error("❌ DummyJSON also failed:", error.message);
-      res.status(500).json({ msg: "Both APIs failed" });
+      console.error("❌ DummyJSON categories failed:", error.message);
+      return res.status(500).json({ msg: "Error fetching categories" });
     }
   }
 });
