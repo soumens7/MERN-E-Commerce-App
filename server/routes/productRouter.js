@@ -1,71 +1,34 @@
+// server/routes/products.js
 const router = require("express").Router();
 const axios = require("axios");
 
-// Helper to normalize DummyJSON categories (so your frontend stays consistent)
-const CATEGORY_MAP = {
-  "electronics": "smartphones",
-  "men's clothing": "mens-shirts",
-  "women's clothing": "womens-dresses",
-  "jewelery": "womens-jewellery",
-};
-
+// All products (limited)
 router.get("/products", async (req, res) => {
-  const category = req.query.category; // e.g. /products?category=electronics
-
+  const { category } = req.query;
   try {
-    // --- Try FakeStore first ---
-    let url = "https://fakestoreapi.com/products";
-    if (category) {
-      url = `https://fakestoreapi.com/products/category/${encodeURIComponent(category)}`;
-    }
+    const url = category
+      ? `https://dummyjson.com/products/category/${encodeURIComponent(
+          category
+        )}?limit=100`
+      : `https://dummyjson.com/products?limit=100`;
 
-    const response = await axios.get(url, {
-      headers: { "User-Agent": "Mozilla/5.0" },
-    });
-
-    return res.json(response.data);
-  } catch (err) {
-    console.error("❌ FakeStore failed, trying DummyJSON...");
-  }
-
-  try {
-    // --- Fallback: DummyJSON ---
-    let url = "https://dummyjson.com/products?limit=100";
-
-    if (category) {
-      // map to DummyJSON’s category if known
-      const mapped = CATEGORY_MAP[category.toLowerCase()] || category;
-      url = `https://dummyjson.com/products/category/${encodeURIComponent(mapped)}?limit=100`;
-    }
-
-    const fallback = await axios.get(url, {
-      headers: { "User-Agent": "Mozilla/5.0" },
-    });
-
-    const products = fallback.data.products || fallback.data;
-    res.json(products);
-  } catch (error) {
-    console.error("❌ DummyJSON also failed:", error.message);
-    res.status(500).json({ msg: "Both APIs failed" });
+    const { data } = await axios.get(url);
+    res.json(data.products || data);
+  } catch (e) {
+    res.status(500).json({ msg: "DummyJSON failed" });
   }
 });
 
-router.get("/products/categories", async (req, res) => {
+// Categories (slugs)
+router.get("/products/categories", async (_req, res) => {
   try {
-    const response = await axios.get("https://fakestoreapi.com/products/categories", {
-      headers: { "User-Agent": "Mozilla/5.0" },
-    });
-    res.json(response.data);
-  } catch (err) {
-    console.error("❌ FakeStore failed, trying DummyJSON...");
-    try {
-      const response = await axios.get("https://dummyjson.com/products/categories");
-      const categories = response.data.map((cat) => cat.name || cat.slug || cat);
-      return res.json(categories);
-    } catch (error) {
-      console.error("❌ DummyJSON categories failed:", error.message);
-      return res.status(500).json({ msg: "Error fetching categories" });
-    }
+    const { data } = await axios.get(
+      "https://dummyjson.com/products/categories"
+    );
+    // data is an array of slugs like "smartphones", "mens-shirts", ...
+    res.json(data);
+  } catch {
+    res.status(500).json({ msg: "Error fetching categories" });
   }
 });
 
