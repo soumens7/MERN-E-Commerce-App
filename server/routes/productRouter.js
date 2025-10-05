@@ -32,8 +32,14 @@ router.get("/products/categories", async (req, res) => {
     );
     res.json(response.data);
   } catch (err) {
-    console.error("Failed to fetch categories:", err.message);
-    res.status(500).json({ msg: "Error fetching categories" });
+    console.error("❌ FakeStore failed, trying DummyJSON...");
+    try {
+      const fallback = await axios.get("https://dummyjson.com/products/categories");
+      res.json(fallback.data.products.categories); // Note: dummyjson wraps in .products
+    } catch (error) {
+      console.error("❌ DummyJSON also failed:", error.message);
+      res.status(500).json({ msg: "Both APIs failed" });
+    }
   }
 });
 module.exports = router;
