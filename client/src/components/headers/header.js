@@ -77,6 +77,7 @@ const Header = () => {
         <li>
           <Link to="/">{isAdmin ? "Products" : "Shop"}</Link>
         </li>
+        <li>
         {isAdmin && adminRouter()}
         {isLogged ? (
           loggedRouter()
@@ -85,7 +86,7 @@ const Header = () => {
             <Link to="/login">Login / Register</Link>
           </button>
         )}
-
+        </li>
         <li>
           <MdClose size={30} className="menu" />
         </li>
