@@ -9,7 +9,7 @@ import axios from "axios";
 
 const Header = () => {
   const state = useContext(GlobalState);
-  console.log("State:", state); // ✅ Log the state object
+  console.log("State:", state); // Log the state object
   const [isLogged, setIsLogged] = state.userAPI.isLogged;
   const [isAdmin, setIsAdmin] = state.userAPI.isAdmin;
   const [cart] = state.userAPI.cart;
